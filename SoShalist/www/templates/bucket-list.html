@@ -1,0 +1,59 @@
+<ion-header-bar class="bar bar-header bar-dark">
+    <button ng-show="!hasFilters" class="button button-clear" ng-click="hasFilters = true"><i class="ion-search"></i></button>
+    <button ng-show="hasFilters" class="button button-clear" ng-click="hasFilters = false; searchText = null"><i class="ion-search"></i></button>
+    <div class="bar bar-header item-input-inset" ng-show="hasFilters">
+            <input class="input-large" type="search" placeholder="Search Resources" ng-model="searchText">
+    </div>
+    <h2 class="title"></h2>
+       <button class="button button-clear"  ng-click="logout()">Logout</button>
+</ion-header-bar>
+<ion-content class="has-header padding" has-tabs="true" on-refresh="onRefresh()">
+   <ion-refresher ng-hide="noData" on-refresh="doRefresh('1')"></ion-refresher>
+   <div class="list card" ng-repeat="item in list| filter:searchText| orderBy:'- created'" >
+       <div class="item list-group-item-heading">
+           <p class="actions padding">
+               <i ng-if="checkBooked(item) == false " class="ion-ios-heart-outline icon-actions margin" ng-click="markBooked('{{item._id}}')"></i>
+               <i ng-if="checkBooked(item) == true " class="ion-ios-heart icon-actions margin" ng-click="unBooked('{{item._id}}')"></i>
+           </p>
+           <span class="button button-outline button-dark" style="margin-right:1em" ng-repeat="tag in item.type" >
+                   {{tag.text |uppercase}}
+           </span>
+
+           <h4 style="margin-top:1em">
+               {{ item.title|uppercase}}
+           </h4>
+       </div>
+      <div class="item item-body">
+          <p ng-click="moreDesc(reveal[$index], $index)">
+             <i class="icon ion-arrow-right-b" ng-if="reveal[$index] == false || !reveal[$index] && item.description"></i>
+              <i class="icon ion-arrow-down-b" ng-if="reveal[$index] == true && item.description"></i>
+              {{descriptLen(item.description, reveal[$index])}}
+          </p>
+          <p>
+              <a href="#" class="subdued">{{item.booked.length}} Reach Outs</a>
+          </p>
+      </div>
+       <div class="item tabs tabs-secondary tabs-icon-left">
+           <a class="tab-item" href="http://maps.google.com/?q={{item.location}}" target="_blank">
+               <i class="icon ion-location"></i>
+               {{item.location}}
+           </a>
+           <!--<a class="tab-item" href="#">
+               <i class="icon ion-chatbox"></i>
+               Advise
+           </a>-->
+           <!--<a class="tab-item" href="#">
+               <i class="icon ion-share"></i>
+               Share
+           </a>-->
+       </div>
+   </div>
+   <div class="card" >
+     <div class="item item-text-wrap" ng-show="noData">
+         <span>
+         No Resources listed at the moment. <!--Click  <a href="javascript:" ng-click="newTask()">Here</a> and create one -->
+         </span>
+      </div>
+   </div>
+
+</ion-content>

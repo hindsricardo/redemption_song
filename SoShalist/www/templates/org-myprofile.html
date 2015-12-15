@@ -1,0 +1,66 @@
+<ion-header-bar class="bar-dark">
+    <div class="buttons button-clear">
+        <button class="button"><i class="icon ion-arrow-left-c"></i></button>
+    </div>
+   <h1 class="title">{{org.orgName |uppercase}} PROFILE</h1>
+</ion-header-bar>
+
+<ion-content class="list card">
+    <div class="item item-avatar myprofileHeaderBox" ng-repeat=" member in org.staff">
+        <img ng-if="member.pic" src="{{member.pic}}">
+        <img ng-if="!member.pic" src="../img/Profile_avatar_placeholder_large.png">
+        <h2>{{member.email|uppercase}}</h2>
+        <i ng-show="!edit[$index].password" class=" ion-edit icon-actions margin" ng-click="edit[$index].password = true" >PW</i>
+        <div ng-show="edit[$index].password" class="row input-group-lg">
+            <input type="text" class="padding-left text-center" placeholder="update password" ng-model="model[$index].password">
+            <i ng-show="edit[$index].password" class="ion-android-checkmark-circle icon-actions margin" ng-click="updatePassword(org._id, $index, org);edit[$index].password = false; refresh" ></i>
+            <i ng-show="edit[$index].password" class="ion-close-round icon-actions margin" ng-click="edit[$index].password = false" ></i>
+        </div>
+    </div>
+    <div ng-show="addSection" class="list card" >
+        <div class="list-header">
+            <h2 class="text-center addHeading">Add New Team Member</h2>
+            <i ng-show="addSection" class="ion-close-round icon-actions margin" ng-click="addSection = false" ></i>
+        </div>
+
+        <div class="row item input-group-lg">
+            <div class="col-90">
+                <div style="padding-right: 10px; padding-left: 10px; ">
+                    <input type="email" placeholder="member@email.com" ng-model="model[0].email">
+                </div>
+                <div style="padding-right: 10px; padding-left: 10px;">
+                    <input type="password" placeholder="password" ng-model="model[0].password">
+                </div>
+                <div style="padding-right: 10px; padding-left: 10px;">
+                    <input type="number" max="2" placeholder="level" ng-model="model[0].level">
+                </div>
+            </div>
+        </div>
+        <div>
+            <button ng-click="createStaff(org._id, org); addSection = false" class="button button-block button-balanced button-large "> ADD </button>
+        </div>
+    </div>
+    <button ng-show="!addSection" ng-click="addSection = true" class="button button-block"><i class="ion-person-add" ></i> Add Member</button>
+
+    <div class="item item-body" ng-if="no" ng-repeat="active in activity">
+            <p>
+                <b>{{active.type}}</b> {{active.title}}
+            </p>
+            <p>
+                <!-- <a href="#" class="subdued">1 Like</a>
+                <a href="#" class="subdued">5 Comments</a>-->
+            </p>
+    </div>
+
+    <div ng-if="activity.length == undefined || activity.length == 0" class="item item-body">
+        <p>
+            No activity yet, but don't be shy, please need your help. <b><a href="#/org/list">Provide help.</a></b>
+        </p>
+        <p>
+            <!-- <a href="#" class="subdued">1 Like</a>
+            <a href="#" class="subdued">5 Comments</a>-->
+        </p>
+    </div>
+
+
+</ion-content>

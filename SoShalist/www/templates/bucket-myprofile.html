@@ -1,0 +1,52 @@
+<ion-header-bar class="bar-dark">
+    <div class="buttons button-clear">
+        <button class="button"><i class="icon ion-arrow-left-c"></i></button>
+    </div>
+   <h1 class="title">Your Profile</h1>
+   <button class="button" ng-click="edit()">Edit</button>
+</ion-header-bar>
+
+<ion-content class="list card">
+
+    <div class="item item-avatar myprofileHeaderBox">
+        <img ng-if="user.pic" src="{{user.pic}}">
+        <img ng-if="!user.pic" src="../img/Profile_avatar_placeholder_large.png">
+        <h2>{{user.name|uppercase}}</h2>
+        <div class="row">
+            <a class="tab-item" href="#">
+                <i class="icon ion-calendar">{{total_booked}}</i>
+                Booked
+            </a>
+          <!--  <a class="tab-item" href="#">
+                <i class="icon ion-chatbox">10 {{total_advised}}</i>
+                Advised
+            </a>
+            <a class="tab-item" href="#">
+                <i class="icon ion-briefcase">44</i>
+                Worked
+            </a> -->
+        </div>
+    </div>
+
+    <div class="item item-body" ng-if="no" ng-repeat="active in activity">
+            <p>
+                <b>{{active.type}}</b> {{active.title}}
+            </p>
+            <p>
+                <!-- <a href="#" class="subdued">1 Like</a>
+                <a href="#" class="subdued">5 Comments</a>-->
+            </p>
+    </div>
+
+    <div ng-if="activity.length == undefined || activity.length == 0" class="item item-body">
+        <p>
+            No activity yet, but don't be shy, we are here to help. <b><a href="#/bucket/list">Find help.</a></b>
+        </p>
+        <p>
+            <!-- <a href="#" class="subdued">1 Like</a>
+            <a href="#" class="subdued">5 Comments</a>-->
+        </p>
+    </div>
+
+
+</ion-content>

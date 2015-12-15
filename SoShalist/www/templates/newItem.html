@@ -1,0 +1,50 @@
+<div class="modal slide-in-up" ng-controller="newCtrl">
+   <header class="bar bar-header bar-secondary">
+      <button class="button button-clear button-primary" ng-click="close()">Cancel</button>
+      <h1 class="title">List Resource</h1>
+      <button class="button button-default" ng-click="createNew()">Done</button>
+   </header>
+   <ion-content class="padding has-header">
+       <label class="item item-input"> Title
+           <input type="text" class="text-center" placeholder=" Give it a name that makes them understand what this is..." ng-model="data.title">
+       </label>
+       <div class="list">
+           <label class="item"> Searchable Tags
+               <tags-input ng-model="data.tags"></tags-input>
+           </label>
+           <label class="item item-input"> Capacity
+               <input type="number"  class="text-center" placeholder="OPTIONAL: how many positions, rooms, beds or plates can you offer a day..." ng-model="data.capacity">
+           </label>
+           <label class="item "> Description/Requirements
+               <textarea style="width:100%; height:8em" class="text-center" placeholder="Provide detail and spell out the requirements" ng-model="data.description">
+
+               </textarea>
+           </label>
+           <label class="item item-input"> <i class="icon ion-location"></i>Where
+               <input type="text" class="text-center" placeholder="Address where this is available." ng-model="data.location">
+           </label>
+           <h5 class="text-center addHeading">Custom Field</h5>
+           <div ng-repeat="field in data.customFields" style="margin-left: 3%;color:white;">
+               <b>{{field.label}}</b> : {{field.value}}
+           </div>
+       </div>
+
+        <!-- ADD FIELDS SECTION -->
+       <div class="list card" >
+               <h5 class="text-center addHeading">Add Custom Field</h5>
+
+           <div class="row item input-group-lg">
+               <label></label>
+               <div style="padding-right: 10px; padding-left: 10px; ">
+                   <input type="text" placeholder="field label" ng-model="custom.label">
+               </div>
+                   <div style="padding-right: 10px; padding-left: 10px; ">
+                       <input type="text" placeholder="field value" ng-model="custom.value">
+                   </div>
+               <div>
+                   <button ng-click="addField()">Add Field</button>
+               </div>
+           </div>
+       </div>
+   </ion-content>
+</div>

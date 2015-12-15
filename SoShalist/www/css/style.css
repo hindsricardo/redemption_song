@@ -1,0 +1,66 @@
+
+ion-content {
+    background-color: #ebebeb;
+    background-image: url("../img/backgroundPatt.png");
+    background-repeat: repeat;
+}
+.margin {
+    margin-left: 9px;
+    margin-right: 9px;
+}
+
+.icon-actions {
+    font-size: 23px;
+}
+
+
+.checkbox {
+    vertical-align: middle;
+}
+
+.actions {
+    float: right;
+}
+
+.item-text-wrap {
+    overflow: auto;
+}
+
+.ion-checkmark-circled.icon-actions.margin
+{
+	margin-right: 35px;
+}
+a
+{
+    text-decoration: none;
+}
+
+textarea
+{
+    width:100%
+    min-height: 300px;
+}
+
+.addHeading {
+    color: #cccccc;
+}
+
+.centerIcon {
+    height: 50%;
+}
+
+.ion-arrow-left-c
+{
+    color: white;
+}
+
+
+/* MY PROFILE SECTION*/
+.myprofileHeaderBox {
+    background:#CEECF5;
+}
+
+
+
+
+
